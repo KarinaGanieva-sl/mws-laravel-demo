@@ -1,13 +1,23 @@
 @extends('layouts.main')
 @section('content')
-<div>
-  <a class="btn btn-primary" href="{{ route('issue.index') }}" role="button">Back</a>
-      <a class="btn btn-primary" href="{{ route('issue.edit', $issue->id) }}" role="button">Edit</a>
-        <form action="{{ route('issue.delete', $issue->id) }}" method="post">
-          @csrf
-          @method('delete')
-          <input type="submit" value="Delete" class="btn btn-primary">
-        </form>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group me-1" role="group" aria-label="First group">
+    <a class="btn btn-primary" href="{{ route('issue.index') }}" role="button">Back</a>
+  </div>
+  @if(auth()->user()->role === 'admin')
+  <div class="btn-group me-1" role="group" aria-label="Second group">
+    <a class="btn btn-primary" href="{{ route('issue.edit', $issue->id) }}" role="button">Edit</a>
+  </div>
+  @endif
+  @if(auth()->user()->role === 'admin')
+  <div class="btn-group me-1" role="group" aria-label="Third group">
+    <form action="{{ route('issue.delete', $issue->id) }}" method="post">
+      @csrf
+      @method('delete')
+      <input type="submit" value="Delete" class="btn btn-primary">
+    </form>
+  </div>
+  @endif
 </div>
 <div>
     <form action="{{  route('issue.store') }}" method="post">
@@ -23,6 +33,14 @@
           <div class="form-group">
             <label for="project">Project</label>
             <input type="text" name="name" class="form-control" id="project" placeholder="{{ $issue->project->name}}" disabled>
+          </div>  
+          <div class="form-group">
+            <label for="project">Created by</label>
+            <input type="text" name="name" class="form-control" id="project" placeholder="{{ $issue->creator->name}}" disabled>
+          </div>  
+          <div class="form-group">
+            <label for="project">Reporter</label>
+            <input type="text" name="name" class="form-control" id="project" placeholder="{{ $issue->reporter->name}}" disabled>
           </div>  
       </form>
 </div>

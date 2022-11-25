@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea type="text" name="description" class="form-control" id="description" placeholder="Description" value="{{$project->description}}"></textarea>
+            <textarea type="text" name="description" class="form-control" id="description" placeholder="Description" value="{{$project->description}}">{{$project->description}}</textarea>
         </div>
         <div class="form-group">
           <label for="owner">Owner</label>

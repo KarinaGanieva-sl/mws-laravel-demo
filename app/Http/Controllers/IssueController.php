@@ -56,6 +56,7 @@ class IssueController extends Controller
             'name' => 'string',
             'description' => 'string',
             'project_id' => 'integer',
+            'reporter_id' => 'integer',
         ]);
         $issue->update($data);
         return redirect()->route('issue.show', $issue->id);

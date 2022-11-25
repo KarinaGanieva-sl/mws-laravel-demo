@@ -20,9 +20,6 @@
                     <li class="nav-item active">
                       <a class="nav-link" href="{{ route('issue.index') }}">Issues <span class="sr-only"></span></a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{ route('issue.index') }}">Users</a>
-                    </li>
                   </ul>
                 </div>
               </nav>

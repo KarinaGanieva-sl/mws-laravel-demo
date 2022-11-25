@@ -23,6 +23,8 @@
             @endforeach    
             </tbody>
         </table>
+        @if(auth()->user()->role !== 'developer')
         <a class="btn btn-primary" href="{{ route('issue.create') }}" role="button">Create new</a>
+        @endif
 </div>
 @endsection('content')    
