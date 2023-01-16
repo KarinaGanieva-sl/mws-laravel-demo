@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
 
+use App\Mail\Project\Creation;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+
 
 class ProjectController extends Controller
 {
@@ -25,6 +29,7 @@ class ProjectController extends Controller
     public function store()
     {
         $creator_id = auth()->user()->id;
+        $email = auth()->user()->email;
         $data = request()->validate([
             'name' => 'string',
             'description' => 'string',
@@ -32,6 +37,7 @@ class ProjectController extends Controller
         ]);
         $data['creator_id'] = $creator_id;
         Project::create($data);
+        Mail::to($email)->send(new Creation($data['name']));
         return redirect()->route('project.index');
     }
 

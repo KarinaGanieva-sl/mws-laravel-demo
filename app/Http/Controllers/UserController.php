@@ -26,7 +26,7 @@ class UserController extends Controller
                 'role' => 'admin',
                 ];
         User::create($project);
-        dd('sucsess');
+        dd('succses');
 
     }
 
