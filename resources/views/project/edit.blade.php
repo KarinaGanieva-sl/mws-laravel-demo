@@ -22,6 +22,10 @@
             @endforeach  
           </select>
         </div>
+        <div class="form-group">
+          <label for="github_link">Github link</label>
+          <input type="text" name="github_link" class="form-control" id="github_link" placeholder="Github link" value="{{$project->github_link}}">
+        </div>
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
 </div>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->text('github_link');
             $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('creator_id');
             $table->timestamp('creation_date')->useCurrent();
