@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
+use App\Exceptions\GithubProjectNotFound;
 use Illuminate\Support\Facades\Http;
 
 use App\Mail\Project\Creation;
@@ -39,7 +40,7 @@ class ProjectController extends Controller
         ]);
         $data['creator_id'] = $creator_id;
         Project::create($data);
-        //Mail::to($email)->send(new Creation($data['name']));
+        Mail::to($email)->send(new Creation($data['name']));
         return redirect()->route('project.index');
     }
 
@@ -47,6 +48,9 @@ class ProjectController extends Controller
     {
         $end_point = 'https://api.github.com/repos/'.substr($project->github_link, 19);
         $github_info = Http::withToken(config('dns-manager.github-api-token'))->withOptions(['verify' => false])->get($end_point);
+        if($github_info->status() != 200) {
+            throw new GithubProjectNotFound();
+        }
         return view('project.show', compact('project', 'github_info'));
     }
 

@@ -11,6 +11,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.1",
+        "livewire/livewire": "^2.11",
         "spatie/laravel-ignition": "^1.6",
         "spatie/laravel-ray": "^1.31",
         "symfony/http-client": "^6.1",
