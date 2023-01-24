@@ -11,10 +11,7 @@
             <label for="description">Description</label>
             <textarea type="text" name="description" class="form-control" id="description" placeholder="Description"></textarea>
         </div>
-        <div class="form-group">
-          <label for="github_link">Github link (not necessarily)</label>
-          <input type="text" name="github_link" class="form-control" id="github_link" placeholder="">
-        </div>
+        @livewire('github-link')
         <div class="form-group">
           <label for="owner">Owner</label>
           <select class="form-control" id="owner" name="owner_id">

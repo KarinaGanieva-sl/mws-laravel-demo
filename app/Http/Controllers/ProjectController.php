@@ -36,9 +36,9 @@ class ProjectController extends Controller
             'name' => 'string',
             'description' => 'string',
             'owner_id' => 'integer',
-            'github_link' => 'string'
         ]);
         $data['creator_id'] = $creator_id;
+        $data['github_link'] = session('github_link', '');
         Project::create($data);
         Mail::to($email)->send(new Creation($data['name']));
         return redirect()->route('project.index');
