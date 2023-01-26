@@ -22,14 +22,13 @@ class GithubLink extends Component
         session(['github_link' => $this->github_link]);
         session(['status' => '']);
         $end_point = 'https://api.github.com/repos/'.substr($this->github_link, 19);
-        $github_info = Http::withToken(config('dns-manager.github-api-token'))->withOptions(['verify' => false])->get($end_point);
+        $github_info = Http::withToken(config('dns-manager.github-api-token'))->withOptions(['verify' => false])
+        ->get($end_point);
         if($github_info->status() != 200) {
             session(['status' => 'repository not found on github']);
         } else {
             session(['status' => '']);
         }
-
-
     }
 
     public function render()

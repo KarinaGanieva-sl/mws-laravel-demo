@@ -47,7 +47,8 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $end_point = 'https://api.github.com/repos/'.substr($project->github_link, 19);
-        $github_info = Http::withToken(config('dns-manager.github-api-token'))->withOptions(['verify' => false])->get($end_point);
+        $github_info = Http::withToken(config('dns-manager.github-api-token'))
+            ->withOptions(['verify' => false])->get($end_point);
         if($github_info->status() != 200) {
             throw new GithubProjectNotFound();
         }

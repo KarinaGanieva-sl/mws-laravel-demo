@@ -15,6 +15,5 @@ use App\Models\Project;
 |
 */
 
-Route::get('/', function() {
-    return Project::all();
-});
+Route::get('/projects/', [App\Http\Controllers\Api\V1\IndexController::class, 'index'])->name('projects');
+Route::get('/projects/{id}', [App\Http\Controllers\Api\V1\IndexController::class, 'show'])->name('projects');
